@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main id="main">
+
+  <!-- ======= Portfolio Details ======= -->
+  <div id="portfolio-details" class="portfolio-details">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-8">
+          <h2 class="portfolio-title">{{ portfolio.title }}</h2>
+
+          <div class="portfolio-details-slider swiper">
+            <div class="swiper-wrapper align-items-center">
+              {% for banner in portfolio.banners.all %}
+                <div class="swiper-slide">
+                  <img src="{{ banner.image.url }}" alt="{{ portfolio.title }}">
+                  <!-- Debug output -->
+                  <p>Image URL: {{ banner.image.url }}</p>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+          {% if portfolio.banners.all|length < 3 %}
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var swiper = new Swiper('.swiper', {
+                loop: false,
+                pagination: {
+                  el: '.swiper-pagination',
+                },
+              });
+            });
+          </script>
+          {% else %}
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var swiper = new Swiper('.swiper', {
+                loop: true,
+                pagination: {
+                  el: '.swiper-pagination',
+                },
+              });
+            });
+          </script>
+          {% endif %}
+
+        </div>
+
+        <div class="col-lg-4 portfolio-info">
+          <h3>Project Information</h3>
+          <ul>
+            <li><strong>Service Type</strong>: {{ portfolio.service_type }}</li>
+            <li><strong>Client</strong>: {{ portfolio.client }}</li>
+            <li><strong>Project Date</strong>: {{ portfolio.project_date|date:"F j, Y" }}</li>
+            <li><strong>Project URL</strong>: <a href="{{ portfolio.project_url }}" target="_blank">{{ portfolio.project_url }}</a></li>
+          </ul>
+
+          <p>
+            {{ portfolio.description }}
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div><!-- End Portfolio Details -->
+
+</main>
+<!-- End #main -->
+
+{% endblock %}
