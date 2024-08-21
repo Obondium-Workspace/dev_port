@@ -13,7 +13,7 @@ class About(models.Model):
     degree = models.CharField(max_length=100)
     email = models.EmailField()
     freelance = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='static/assets/img/about/')
+    image = models.ImageField(upload_to='about/')
 
     def __str__(self):
         return self.title
@@ -107,7 +107,7 @@ class Testimonial(models.Model):
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
     quote = models.TextField()
-    image = models.ImageField(upload_to='static/assets/img/testimonials/')
+    image = models.ImageField(upload_to='testimonials/')
 
     def __str__(self):
         return f"{self.name} - {self.position}"
@@ -205,7 +205,7 @@ class Portfolio(models.Model):
     ]
 
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='static/assets/img/portfolio/')
+    image = models.ImageField(upload_to='portfolio/')
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     subtitle = models.CharField(max_length=200, blank=True, null=True)
     service_type = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True)
@@ -219,7 +219,7 @@ class Portfolio(models.Model):
 
 class PortfolioBanner(models.Model):
     portfolio = models.ForeignKey(Portfolio, related_name='banners', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/assets/img/portfolio/', default='static/assets/img/portfolio/default-details-1.jpg')
+    image = models.ImageField(upload_to='portfolio/', default='portfolio/default-details-1.jpg')
 
     def __str__(self):
         return f"Banner for {self.portfolio.title}"
