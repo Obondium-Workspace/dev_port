@@ -54,7 +54,7 @@ ROOT_URLCONF = 'myportfolio_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Path to your templates directory
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,20 +111,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'  # URL to use when referring to static files
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'main', 'static'),  # Path to your static directory in the main app
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Path where static files will be collected by collectstatic
+STATIC_URL = '/static/'
 
-# Media files (user-uploaded content)
-MEDIA_URL = '/media/'  # URL to use when referring to media files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Path to your media directory where uploaded files are stored
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'main', 'static'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Media files
+# https://docs.djangoproject.com/en/5.0/topics/files/
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Security settings
+# Additional settings
 X_FRAME_OPTIONS = 'SAMEORIGIN'  # Allow framing only from the same origin
